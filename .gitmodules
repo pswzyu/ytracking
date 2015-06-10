@@ -1,0 +1,5 @@
+[submodule "opencvblobslib"]
+	path = opencvblobslib
+	url = https://github.com/OpenCVBlobsLib/opencvblobslib.git
+	
+	
