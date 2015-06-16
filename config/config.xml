@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<opencv_storage>
+<blob_min_size>200</blob_min_size>
+<blob_max_size>1000</blob_max_size>
+
+<crop_rect_x>0</crop_rect_x>
+<crop_rect_y>0</crop_rect_y>
+<crop_rect_w>640</crop_rect_w>
+<crop_rect_h>480</crop_rect_h>
+
+<triger_line_x>0</triger_line_x>
+<triger_line_y>0</triger_line_y>
+<triger_line_w>0</triger_line_w>
+<triger_line_h>0</triger_line_h>
+
+<adjustment_alpha>1</adjustment_alpha>
+<adjustment_beta>0</adjustment_beta>
+
+<num_cores>4</num_cores>
+
+<cost_no_blob>20</cost_no_blob>
+<cost_no_track>20</cost_no_track>
+</opencv_storage>
