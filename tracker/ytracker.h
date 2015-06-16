@@ -20,6 +20,9 @@ public:
 
     cv::Rect crop_rect;
     cv::Rect triger_line;
+    int trk_id;
+
+    // config variables
     int blob_min_size;
     int blob_max_size;
     double adj_alpha; // for the linear adjustment of the image
@@ -27,6 +30,9 @@ public:
     int num_cores;
     float cost_no_blob;
     float cost_no_track;
+    int track_fadeout_time;
+    int track_burnin_time;
+    int age_threshold;
 
 
     YTracker();
@@ -38,10 +44,12 @@ private:
     void calculateAssignmentCosts(CBlobResult& blobs, std::vector<MotionTrack>& trks, cv::Mat& costs,
                                   float cost_no_blob, float cost_no_track);
     void predictNewLocationsOfTracks();
-    void updateAssignedTracks(CBlobResult &blobs);
-    void deleteLostTracks(CBlobResult &blobs);
-    void createNewTracks(CBlobResult &blobs);
-    void updateUnassignedTracks(CBlobResult &blobs);
+    void updateAssignedTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
+    void deleteLostTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
+    void createNewTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
+    void updateUnassignedTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
+
+    void showTracks(cv::Mat img);
 
     void loadConfig();
 

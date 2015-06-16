@@ -13,6 +13,8 @@ public:
     int total_visible_cnt;
     int cons_inv_cnt;
 
+    cv::Point pred_center;
+
 
 
     MotionTrack(cv::Point init_pos);

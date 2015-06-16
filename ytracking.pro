@@ -29,6 +29,8 @@ HEADERS += \
     tracker/motiontrack.h \
     tracker/ytracker.h
 
+SOURCES -= hungarian/src/main.cpp
+
 SOURCES += \
     hungarian/src/munkres.cpp \
     opencvblobslib/library/blob.cpp \
@@ -42,3 +44,5 @@ SOURCES += \
     tracker/motiontrack.cpp \
     tracker/ytracker.cpp \
     main.cpp
+
+

@@ -37,13 +37,13 @@ int main(int argc, char *argv[])
         cv::Mat frame;
         bool bSuccess = cap.read(frame); // read a new frame from video
 
-        imshow("Origin", frame);
-
         if (!bSuccess) //if not success, break loop
         {
             std::cout << "Cannot read the frame from video file" << std::endl;
             break;
         }
+
+        imshow("Origin", frame);
 
         if(cv::waitKey(30) == 27) //wait for 'esc' key press for 30 ms. If 'esc' key is pressed, break loop
         {

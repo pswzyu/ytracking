@@ -1,6 +1,7 @@
 ﻿#include "motiontrack.h"
 
-MotionTrack::MotionTrack(cv::Point init_pos)
+MotionTrack::MotionTrack(cv::Point init_pos) :
+    age(1), total_visible_cnt(1), cons_inv_cnt(0)
 {
     // init the kalman filter
     kf.init(4, 2, 0);
@@ -18,6 +19,12 @@ MotionTrack::MotionTrack(cv::Point init_pos)
     setIdentity(kf.processNoiseCov, cv::Scalar::all(1e-4));
     setIdentity(kf.measurementNoiseCov, cv::Scalar::all(1e-1));
     setIdentity(kf.errorCovPost, cv::Scalar::all(.1));
+
+//    kf.predict();
+//    cv::Mat mm(2, 1, CV_32F);
+//    mm.at<float>(0) = init_pos.x;
+//    mm.at<float>(1) = init_pos.y;
+//    kf.correct(mm);
 }
 
 MotionTrack::~MotionTrack()
