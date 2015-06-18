@@ -1,5 +1,7 @@
-#ifndef YTRACKER_H
+﻿#ifndef YTRACKER_H
 #define YTRACKER_H
+
+#include <QObject>
 
 #include <vector>
 
@@ -9,14 +11,22 @@
 #include "opencv2/opencv.hpp"
 #include "package_bgs/PBAS/PixelBasedAdaptiveSegmenter.h"
 
-#include "tracker/motiontrack.h"
+//#include "tracker/motiontrack.h"
+#include "tracker/Ctracker.h"
+#include "tracker/streamer.h"
 
-class YTracker
+class YTracker : public QObject
 {
+    Q_OBJECT
 public:
 
-    std::vector<MotionTrack> tracks;
+    //std::vector<MotionTrack> tracks;
     IBGS* bgs;
+    CTracker* tracker;
+
+    cv::VideoCapture cap;
+    Streamer streamer_ori;
+    Streamer streamer_pro;
 
     cv::Rect crop_rect;
     cv::Rect triger_line;
@@ -38,16 +48,20 @@ public:
     YTracker();
     ~YTracker();
 
-    void process(cv::Mat& img_origin);
+    int init();
+    int process();
+public slots:
+    int timerSlot();
 
-private:
-    void calculateAssignmentCosts(CBlobResult& blobs, std::vector<MotionTrack>& trks, cv::Mat& costs,
-                                  float cost_no_blob, float cost_no_track);
-    void predictNewLocationsOfTracks();
-    void updateAssignedTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
-    void deleteLostTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
-    void createNewTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
-    void updateUnassignedTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
+
+//private:
+//    void calculateAssignmentCosts(CBlobResult& blobs, std::vector<MotionTrack>& trks, cv::Mat& costs,
+//                                  float cost_no_blob, float cost_no_track);
+//    void predictNewLocationsOfTracks();
+//    void updateAssignedTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
+//    void deleteLostTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
+//    void createNewTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
+//    void updateUnassignedTracks(CBlobResult &blobs, cv::Mat_<int> assignment);
 
     void showTracks(cv::Mat img);
 

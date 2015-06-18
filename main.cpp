@@ -1,10 +1,9 @@
 //#include "mainwindow.h"
-//#include <QApplication>
+#include <QCoreApplication>
+#include <QTimer>
 
 
 #include "tracker/ytracker.h"
-
-#include "hungarian/src/munkres.h"
 
 
 int main(int argc, char *argv[])
@@ -21,40 +20,23 @@ int main(int argc, char *argv[])
 //    return 0;
 
 
-    cv::VideoCapture cap("data/video.avi");
+    //cv::VideoCapture cap("data/video.avi");
 
-    if ( !cap.isOpened() )  // if not success, exit program
+    QCoreApplication app(argc, argv);
+
+    YTracker ytracker;
+    if (ytracker.init() != 0)
     {
-        std::cout << "Cannot open the video file" << std::endl;
         return -1;
     }
 
-    YTracker ytracker;
-
-    int key = 0;
-    while(key != 'q')
-    {
-        cv::Mat frame;
-        bool bSuccess = cap.read(frame); // read a new frame from video
-
-        if (!bSuccess) //if not success, break loop
-        {
-            std::cout << "Cannot read the frame from video file" << std::endl;
-            break;
-        }
-
-        imshow("Origin", frame);
-
-        if(cv::waitKey(30) == 27) //wait for 'esc' key press for 30 ms. If 'esc' key is pressed, break loop
-        {
-            std::cout << "esc key is pressed by user" << std::endl;
-            break;
-        }
-
-        ytracker.process(frame);
-
-    }
+    QTimer timer(&app);
+    timer.setInterval(0);
+    QObject::connect(&timer, SIGNAL(timeout()), &ytracker, SLOT(timerSlot()));
+    timer.start();
 
 
-    return 0;
+
+    return app.exec();
+    //return 0;
 }

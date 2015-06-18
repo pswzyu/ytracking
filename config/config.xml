@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <opencv_storage>
-<blob_min_size>200</blob_min_size>
+<blob_min_size>250</blob_min_size>
 <blob_max_size>1000</blob_max_size>
 
-<crop_rect_x>0</crop_rect_x>
-<crop_rect_y>0</crop_rect_y>
-<crop_rect_w>640</crop_rect_w>
-<crop_rect_h>480</crop_rect_h>
+<crop_rect_x>439</crop_rect_x>
+<crop_rect_y>250</crop_rect_y>
+<crop_rect_w>200</crop_rect_w>
+<crop_rect_h>100</crop_rect_h>
 
 <triger_line_x>0</triger_line_x>
 <triger_line_y>0</triger_line_y>
@@ -18,6 +18,11 @@
 
 <num_cores>4</num_cores>
 
-<cost_no_blob>20</cost_no_blob>
-<cost_no_track>20</cost_no_track>
+<cost_no_blob>50</cost_no_blob>
+<cost_no_track>50</cost_no_track>
+
+<track_fadeout_time>10</track_fadeout_time>
+<track_burnin_time>0</track_burnin_time>
+<age_threshold>10</age_threshold>
+
 </opencv_storage>

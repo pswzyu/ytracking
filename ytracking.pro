@@ -1,3 +1,5 @@
+QT += core network
+
 TEMPLATE = app
 
 INCLUDEPATH += "../opencv/build/include" \
@@ -15,7 +17,10 @@ LIBS += -L"../ytracking/pthread_prebuild/lib/x64" \
 
 
 HEADERS += \
-    hungarian/src/munkres.h \
+    tracker/Ctracker.h \
+    tracker/HungarianAlg.h \
+    tracker/Kalman.h \
+    tracker/ytracker.h \
     opencvblobslib/library/blob.h \
     opencvblobslib/library/BlobContour.h \
     opencvblobslib/library/BlobLibraryConfiguration.h \
@@ -25,14 +30,14 @@ HEADERS += \
     package_bgs/PBAS/PBAS.h \
     package_bgs/PBAS/PixelBasedAdaptiveSegmenter.h \
     package_bgs/IBGS.h \
-    tracker/HungarianAlg.h \
-    tracker/motiontrack.h \
-    tracker/ytracker.h
+    tracker/streamer.h
 
-SOURCES -= hungarian/src/main.cpp
 
 SOURCES += \
-    hungarian/src/munkres.cpp \
+    tracker/Ctracker.cpp \
+    tracker/HungarianAlg.cpp \
+    tracker/Kalman.cpp \
+    tracker/ytracker.cpp \
     opencvblobslib/library/blob.cpp \
     opencvblobslib/library/BlobContour.cpp \
     opencvblobslib/library/BlobOperators.cpp \
@@ -40,9 +45,8 @@ SOURCES += \
     opencvblobslib/library/ComponentLabeling.cpp \
     package_bgs/PBAS/PBAS.cpp \
     package_bgs/PBAS/PixelBasedAdaptiveSegmenter.cpp \
-    tracker/HungarianAlg.cpp \
-    tracker/motiontrack.cpp \
-    tracker/ytracker.cpp \
+    tracker/streamer.cpp \
     main.cpp
+
 
 

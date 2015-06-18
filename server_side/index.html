@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+        <script>
+            
+            function updateImage1(){
+                document.getElementById("img_ori").src =
+                        "http://glhf.cnzy.me/epic_car/ori.jpg?t="+new Date().getTime();
+                
+            }
+            function updateImage2(){
+                document.getElementById("img_pro").src =
+                        "http://glhf.cnzy.me/epic_car/pro.jpg?t="+new Date().getTime();
+                $(count).load("http://glhf.cnzy.me/epic_car/count.html");
+                
+            }
+            setInterval(updateImage1, 1000);
+            setInterval(updateImage2, 500);
+            
+        </script>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <div>Cars:<a id="count"></a></div>
+        <img id="img_ori"/>
+        <img id="img_pro"/>
+    </body>
+</html>

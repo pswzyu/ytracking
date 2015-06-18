@@ -3,6 +3,3 @@
 	url = https://github.com/OpenCVBlobsLib/opencvblobslib.git
 	
 	
-[submodule "hungarian"]
-	path = hungarian
-	url = https://github.com/soimy/munkres-opencv.git
