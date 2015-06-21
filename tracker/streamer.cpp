@@ -39,9 +39,10 @@ void Streamer::send(cv::Mat& img, std::string count)
     is_working = true;
 
     img_to_send = img.clone();
-    cv::imwrite(filename, img_to_send);
+    //cv::imwrite(filename, img_to_send);
 
     lock.unlock();
+
 
 //    if (thread)
 //    {
@@ -56,7 +57,7 @@ void Streamer::send(cv::Mat& img, std::string count)
 
     QByteArray postData;
     //Look below for buildUploadString() function
-    postData = buildUploadString(filename, count);
+    postData = buildUploadString(filename, img_to_send, count);
 
     QUrl mResultsURL = QUrl(QString(url.c_str()));
 
@@ -75,7 +76,7 @@ void Streamer::send(cv::Mat& img, std::string count)
 
 
 
-QByteArray Streamer::buildUploadString(std::string fn, std::string count)
+QByteArray Streamer::buildUploadString(std::string fn, cv::Mat img, std::string count)
 {
     QString path(fn.c_str());
     //path.append("\\\\");
@@ -96,20 +97,24 @@ QByteArray Streamer::buildUploadString(std::string fn, std::string count)
     data.append("\"\r\n");
     data.append("Content-Type: image/jpg\r\n\r\n"); //data type
 
-    QFile file(path);
-        if (!file.open(QIODevice::ReadOnly)){
-            //qDebug() << "QFile Error: File not found!";
-            return data;
-        } else {
-            //qDebug() << "File found, proceed as planned";
-        }
+//    QFile file(path);
+//    if (!file.open(QIODevice::ReadOnly)){
+//        //qDebug() << "QFile Error: File not found!";
+//        return data;
+//    } else {
+//        //qDebug() << "File found, proceed as planned";
+//    }
 
-    data.append(file.readAll());
+    cv::vector<uchar> encoded_img;
+    cv::imencode(".jpg", img, encoded_img);
+
+    if (encoded_img.size() > 0)
+        data.append(reinterpret_cast<char*>(&encoded_img[0]), encoded_img.size());
     data.append("\r\n");
     data.append("--" + bound + "--\r\n");  //closing boundary according to rfc 1867
 
 
-    file.close();
+//    file.close();
 
     return data;
 }

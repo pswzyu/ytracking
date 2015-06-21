@@ -6,7 +6,6 @@
 
 #include <QCoreApplication>
 
-#include "hungarian/src/munkres.h"
 
 #include <QDebug>
 
@@ -89,6 +88,7 @@ int YTracker::process()
     // crop the image and get only the roi
     cv::Mat img_input = img_origin(crop_rect).clone();
     //cv::Mat img_input = img_origin.clone();
+    //cv::resize(img_input, img_input, cv::Size(160, 120));
     // do some linear adjustment to the image
     img_input.convertTo(img_input, -1, adj_alpha, adj_beta);
     // first find the foreground

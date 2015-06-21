@@ -28,7 +28,7 @@ public:
 
     void send(cv::Mat &img, std::string count);
     void uploadFile(std::string url, std::string fn);
-    QByteArray buildUploadString(std::string fn, std::string count);
+    QByteArray buildUploadString(std::string fn, cv::Mat img, std::string count);
 
 public slots:
     void printScriptReply(QNetworkReply* reply);
