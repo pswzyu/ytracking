@@ -1,6 +1,5 @@
 #include "streamer.h"
 
-#include "streamthread.h"
 
 #include <QUrl>
 #include <QtNetwork/QNetworkAccessManager>
@@ -10,7 +9,7 @@
 #include <QByteArray>
 
 Streamer::Streamer(std::string p_fn) :
-    is_working(false), filename(p_fn), thread(NULL)
+    is_working(false), filename(p_fn)
 {
     mNetworkManager = new QNetworkAccessManager(this);
     connect(mNetworkManager, SIGNAL(finished(QNetworkReply*)), this, SLOT(printScriptReply(QNetworkReply*))); //This slot is used to debug the output of the server script

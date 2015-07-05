@@ -2,12 +2,16 @@
 #define STREAMER_H
 
 #include "opencv2/opencv.hpp"
+
+#include <QObject>
+
 #include <QMutex>
 #include <string>
 
-#include "streamthread.h"
+//#include "streamthread.h"
 
 class QNetworkAccessManager;
+class QNetworkReply;
 
 class Streamer : public QObject
 {
@@ -16,7 +20,7 @@ public:
     bool is_working;
     QMutex lock;
     std::string filename;
-    StreamThread* thread;
+    //StreamThread* thread;
     cv::Mat img_to_send;
     std::string url;
 

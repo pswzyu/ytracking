@@ -94,6 +94,7 @@ int YTracker::process()
     // first find the foreground
     cv::Mat img_mask;
     bgs->process(img_input, img_mask);
+
     // perform morph operation
     cv::Mat kernel = cv::getStructuringElement(cv::MORPH_RECT, cv::Size(17, 17), cv::Point(8, 8));
     morphologyEx(img_mask, img_mask, cv::MORPH_CLOSE, kernel);
